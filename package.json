@@ -1,0 +1,28 @@
+{
+  "name": "events-api",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/mbortg995/events-API#readme",
+  "bugs": {
+    "url": "https://github.com/mbortg995/events-API/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbortg995/events-API.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "lint:fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "eslint": "^9.18.0",
+    "globals": "^15.14.0",
+    "nodemon": "^3.1.9"
+  }
+}
