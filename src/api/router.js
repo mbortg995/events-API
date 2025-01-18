@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import authRoutes from './auth/auth.router.js';
+import eventRoutes from './event/event.router.js';
 
 const router = Router();
 
@@ -8,6 +9,6 @@ router.get('/', (req, res) => {
 });
 
 router.use('/auth', authRoutes);
-// router.user('/company/:company_id/events', eventRoutes);
+router.use('/company/:companyId/events', eventRoutes);
 
 export default router;
