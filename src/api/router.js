@@ -8,5 +8,6 @@ router.get('/', (req, res) => {
 });
 
 router.use('/auth', authRoutes);
+// router.user('/company/:company_id/events', eventRoutes);
 
 export default router;
