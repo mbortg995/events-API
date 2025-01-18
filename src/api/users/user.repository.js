@@ -2,9 +2,7 @@ import userModel from './user.model.js';
 
 const userRepository = {
   create: async (userData) => {
-    console.log(userData);
     const user = await userModel.create(userData);
-    console.log(user);
     return user;
   },
 

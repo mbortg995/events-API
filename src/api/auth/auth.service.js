@@ -48,8 +48,28 @@ const authService = {
       }
     }
   },
-  login: async (userData) => {
+  login: async (email, password) => {
+    const user = await userRepository.getByEmail(email);
+    if (!user) {
+      throw new Error('No se encontró un usuario con este email');
+    }
 
+    const isSamePassword = compareSync(password, user.password);
+    if (!isSamePassword) {
+      throw new Error('La contraseña no coincide');
+    }
+
+    const company = await companyRepository.getById(user.company_id);
+    const token = generateToken(email);
+
+    return {
+      user: {
+        name: user.name,
+        email: user.email,
+        company,
+      },
+      token,
+    };
   },
 };
 
