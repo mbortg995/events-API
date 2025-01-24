@@ -10,5 +10,6 @@ router.get('/', (req, res) => {
 
 router.use('/auth', authRoutes);
 router.use('/company/:companyId/events', eventRoutes);
+router.use('/company/:companyId/events/:eventId/products', productRoutes);
 
 export default router;
