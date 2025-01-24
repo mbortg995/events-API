@@ -21,7 +21,6 @@ const eventsRepository = {
     return event;
   },
   create: async (event) => {
-    console.log(event);
     const createdEvent = await eventsModel.create(event);
     return createdEvent;
   },

@@ -7,8 +7,9 @@ const productsRepository = {
   getById: async () => {
 
   },
-  create: async () => {
-
+  create: async (product) => {
+    const createdProduct = await productsModel.create(product);
+    return createdProduct;
   },
 };
 
