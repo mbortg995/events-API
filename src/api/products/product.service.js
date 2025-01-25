@@ -29,7 +29,7 @@ const productsService = {
   create: async (product, companyId, eventId) => {
     // comprobar que el company_id que nos viene por parámetro coincide con el company_id que está en el evento.
     validateProductFields(product);
-    const createdProduct = await productsRepository.create({ ...product, event_id: eventId });
+    const createdProduct = await productsRepository.create({ ...product, event_id: eventId, sales: 0 });
     if (!createdProduct) {
       throw new Error('Event not created');
     }
