@@ -1,13 +1,13 @@
 import ordersRepository from './order.repository.js';
 
-// const validateOrderFields = (order) => {
-//   const requiredFields = ['product_id', 'quantity', 'total_price', 'status'];
-//   for (const field of requiredFields) {
-//     if (!order[field]) {
-//       throw new Error('Missing required field');
-//     }
-//   }
-// }
+const validateOrderFields = (order) => {
+  const requiredFields = ['name', 'price', 'product_id'];
+  for (const field of requiredFields) {
+    if (!order[field]) {
+      throw new Error('Missing required field');
+    }
+  }
+};
 
 const ordersService = {
   getAll: async (companyId, eventId) => {
@@ -25,15 +25,18 @@ const ordersService = {
     return order;
   },
   create: async (order, companyId, eventId) => {
-    // validateOrderFields(order);
-    const createdOrder = await ordersRepository.create({ ...order, event_id: eventId });
+    validateOrderFields(order);
+    // crear la order con status 'pending'. El total_price se calcula en base a la cantidad de productos y el precio del producto.
+    // Habrá que sumar en product la cantidad de productos vendidos.
+    // Tras crear order en pending, se tiene que crear una order_items por cada producto en la order.
+    const createdOrder = await ordersRepository.create({ total_items: order[items].length, event_id: eventId, status: 'pending', total_price: null });
     if (!createdOrder) {
       throw new Error('Order not created');
     }
     return createdOrder;
   },
   update: async (order, companyId, eventId, orderId) => {
-    // validateOrderFields(order);
+    validateOrderFields(order);
     const updatedOrder = await ordersRepository.update(order, companyId, eventId, orderId);
     if (!updatedOrder) {
       throw new Error('Order not updated');
